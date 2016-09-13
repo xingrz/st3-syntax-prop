@@ -1,0 +1,24 @@
+%YAML 1.2
+---
+name: Android properties
+file_extensions:
+  - prop
+scope: text.prop
+contexts:
+
+  main:
+    - include: comment
+    - include: line
+
+  comment:
+    - match: '#.*'
+      scope: comment.Comment.semicolon.prop
+      captures:
+        1: punctuation.definition.comment.prop
+
+  line:
+    - match: '^([^=]+)(=)(.+)$'
+      captures:
+        1 : entity.key.prop
+        2 : punctuation.separator.prop
+        3 : string.value.prop
